@@ -42,18 +42,49 @@
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka_2.10</artifactId>
-      <version>0.8.1.1</version>
+      <version>0.8.2.1</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.16</version>
     </dependency>
-    <dependency>
+    <!--  dependency>
       <groupId>com.linkedin.camus</groupId>
       <artifactId>camus-kafka-coders</artifactId>
       <version>0.1.0</version>
-    </dependency>
+    </dependency-->
+	<dependency>
+    	<groupId>org.scala-lang</groupId>
+    	<artifactId>scala-library</artifactId>
+    	<version>2.10.4</version>
+	</dependency>    
+	<dependency>
+    	<groupId>com.101tec</groupId>
+    	<artifactId>zkclient</artifactId>
+    	<version>0.4</version>
+	</dependency>    
+	
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<version>0.9.2-incubating</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-kafka</artifactId>
+			<version>0.9.2-incubating</version>
+		</dependency>	
+	<dependency>
+		<groupId>org.schemarepo</groupId>
+		<artifactId>schema-repo-client</artifactId>
+		<version>0.1.2</version>	
+	</dependency>	
+	<dependency>
+    <groupId>com.sun.jersey</groupId>
+    <artifactId>jersey-json</artifactId>
+    <version>1.8</version>
+</dependency>
   </dependencies>
 
   <build>
@@ -70,6 +101,81 @@
           </archive>
         </configuration>
        </plugin>
+       
+       
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-shade-plugin</artifactId>
+		                <version>2.3</version>
+		                <executions>
+		                    <execution>
+		                        <phase>package</phase>
+		                        <goals>
+		                            <goal>shade</goal>
+		                        </goals>
+		                        <configuration>
+		                            <artifactSet>
+		                                <excludes>
+				                        <exclude>org.apache.storm:storm-core</exclude>
+							<exclude>org.apache.storm:storm-core</exclude>
+							<exclude>org.clojure:clojure</exclude>
+							<exclude>clj-time:clj-time</exclude>
+							<exclude>joda-time:joda-time</exclude>
+							<exclude>compojure:compojure</exclude>
+							<exclude>org.clojure:core.incubator</exclude>
+							<exclude>org.clojure:tools.macro</exclude>
+							<exclude>clout:clout</exclude>
+							<exclude>ring:ring-core</exclude>
+							<exclude>commons-fileupload:commons-fileupload</exclude>
+							<exclude>javax.servlet:servlet-api</exclude>
+							<exclude>hiccup:hiccup</exclude>
+							<exclude>ring:ring-devel</exclude>
+							<exclude>clj-stacktrace:clj-stacktrace</exclude>
+							<exclude>ring:ring-jetty-adapter</exclude>
+							<exclude>ring:ring-servlet</exclude>
+							<exclude>org.mortbay.jetty:jetty</exclude>
+							<exclude>org.mortbay.jetty:jetty-util</exclude>
+							<exclude>org.clojure:tools.logging</exclude>
+							<exclude>org.clojure:math.numeric-tower</exclude>
+							<exclude>org.clojure:tools.cli</exclude>
+							<exclude>commons-io:commons-io</exclude>
+							<exclude>org.apache.commons:commons-exec</exclude>
+							<exclude>commons-lang:commons-lang</exclude>
+							<exclude>org.apache.curator:curator-framework</exclude>
+							<exclude>org.apache.curator:curator-client</exclude>
+							<exclude>org.apache.zookeeper:zookeeper</exclude>
+							<exclude>jline:jline</exclude>
+							<exclude>org.jboss.netty:netty</exclude>
+							<exclude>com.googlecode.json-simple:json-simple</exclude>
+							<exclude>com.twitter:carbonite</exclude>
+							<exclude>com.esotericsoftware.kryo:kryo</exclude>
+							<exclude>com.esotericsoftware.reflectasm:reflectasm</exclude>
+							<exclude>org.ow2.asm:asm</exclude>
+							<exclude>com.esotericsoftware.minlog:minlog</exclude>
+							<exclude>org.objenesis:objenesis</exclude>
+							<exclude>com.twitter:chill-java</exclude>
+							<exclude>org.yaml:snakeyaml</exclude>
+							<exclude>org.apache.httpcomponents:httpclient</exclude>
+							<exclude>org.apache.httpcomponents:httpcore</exclude>
+							<exclude>commons-logging:commons-logging</exclude>
+							<exclude>commons-codec:commons-codec</exclude>
+							<exclude>com.googlecode.disruptor:disruptor</exclude>
+							<exclude>org.jgrapht:jgrapht-core</exclude>
+							<exclude>com.google.guava:guava</exclude>
+							<exclude>ch.qos.logback:logback-classic</exclude>
+							<exclude>ch.qos.logback:logback-core</exclude>
+							<exclude>org.slf4j:slf4j-api</exclude>
+							<exclude>org.slf4j:log4j-over-slf4j</exclude>
+							<exclude>io.netty:netty</exclude>
+		                                </excludes>
+		                            </artifactSet>
+		       	                </configuration>
+	                	   </execution>
+		               </executions>
+			</plugin>       
+       
+       
+       
        <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -147,7 +253,7 @@
                     <overWrite>false</overWrite>
                     <outputDirectory>${project.build.directory}/libs</outputDirectory>
 		  </artifactItem>
- 		  <artifactItem>
+ 		  <!--  artifactItem>
 	   	    <groupId>com.linkedin.camus</groupId>
 		    <artifactId>camus-kafka-coders</artifactId>
 		    <version>0.1.0</version>
@@ -178,7 +284,7 @@
 		    <type>jar</type>
                     <overWrite>false</overWrite>
                     <outputDirectory>${project.build.directory}/libs</outputDirectory>
-	 	  </artifactItem>
+	 	  </artifactItem-->
    		  <artifactItem>
 		    <groupId>org.apache.avro.repo</groupId>
 		    <artifactId>avro-repo-common</artifactId>

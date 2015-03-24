@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import com.linkedin.camus.etl.kafka.coders.KafkaAvroMessageEncoder;
+//import com.linkedin.camus.etl.kafka.coders.KafkaAvroMessageEncoder;
 
 public class AvroRepoKafkaProducerTest 
 {
@@ -81,8 +81,8 @@ public class AvroRepoKafkaProducerTest
     }
     
     private static byte[] encodeMessage(String topic, IndexedRecord record, Properties props){
-    	KafkaAvroMessageEncoder encoder = new KafkaAvroMessageEncoder(topic, null);
-    	encoder.init(props, topic);
-    	return encoder.toBytes(record);
+    	//KafkaAvroMessageEncoder encoder = new KafkaAvroMessageEncoder(topic, null);
+    	//encoder.init(props, topic);
+    	return null;// encoder.toBytes(record);
     }
 }
